@@ -1,0 +1,56 @@
+<html>
+    <body>
+        <h1>Simple retrieve username latest tweets</h1>
+        <span id="latest-statuses-error" class="hidden"></span>
+        <form id="latest-statuses">
+            <label>UserName</label>
+            <input id="username"  type="text">
+            <button id="retrieve-latest-statuses">Retrieve</button>
+        </form>
+        <ul id="latest">
+
+        </ul>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $("#retrieve-latest-statuses").click(function(event){
+
+                    event.preventDefault();
+
+                    $('#latest').empty();
+                    if ($('#username').val() == "")
+                    {
+                        $('#latest-statuses-error').html("user name cannot be empty");
+                        return false;
+                    }
+                    url = "api/v1/" + encodeURI($('#username').val()) + "/latest-tweets";
+                    $.ajax({
+                        url: url, success: function (data) {
+                            $('#latest').empty();
+                            $('#latest-statuses-error').empty();
+                            $('#latest-statuses-error').addClass("hidden");
+                            data["latest_statuses"].forEach(bing_tweets);
+                        },
+                        error:
+                        function (jqXHR, textStatus, errorThrown) {
+                             if(jqXHR.status == 404)
+                              {
+                                  console.log(jqXHR);
+                                $('#latest-statuses-error').html(jqXHR.responseJSON['message']);
+                                $('#latest-statuses-error').removeClass("hidden");
+                              }
+                          }
+
+
+                    });
+                });
+
+
+            function bing_tweets(tweet) {
+                $('#latest').append('<li>' + tweet + '</li>');
+
+            }
+        });
+    </script>
+</html>
