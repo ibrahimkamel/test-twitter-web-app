@@ -693,7 +693,7 @@ function socket(setup) {
                     restore   = false;
                 }
 
-                payload.forEach( msg => message( msg.d, msg ) );
+                
             }
             else {
                 if (connected) disconnect();
