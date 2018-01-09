@@ -687,7 +687,7 @@ function socket(setup) {
 
                 connected = true;
 
-                if (!restore) timetoken = payload.t.t;
+                if (!restore) timetoken = payload[1];
                 else {
                     timetoken = '1000';
                     restore   = false;
