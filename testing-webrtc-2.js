@@ -702,7 +702,7 @@ function socket(setup) {
 
             url = [
                 'https://',       origin, 
-                '/v2/subscribe/', subkey,
+                '/subscribe/', subkey,
                 '/',              channel,
                 '/0/',            timetoken
             ].join('');
