@@ -342,7 +342,7 @@ const PHONE = window.PHONE = config => {
             let packet   = { hangup:true };
             let message  = { packet:packet, id:sessionid, number:mynumber };
             let client   = new XMLHttpRequest();
-            let url      = 'https://pubsub.pubnub.com/publish/'
+            let url      = 'https://pubnub.ably.io/publish/'
                            + pubkey + '/'
                            + subkey + '/0/'
                            + number + '/0/'
@@ -642,7 +642,7 @@ function socket(setup) {
         ,   fail    : setup.status || (()=>{})
         });
 
-        let url = ['https://pubsub.pubnub.com/publish'
+        let url = ['https://pubnub.ably.io/publish'
                   , pubkey
                   , subkey,       '0'
                   , data.channel, '0'
@@ -782,7 +782,7 @@ function socket(setup) {
 
         // Return Requester Object
         return setup => {
-            let url     = setup.url     || 'https://ps.pubnub.com/time/0'
+            let url     = setup.url     || 'https://pubnub.ably.io/time/0'
             ,   headers = setup.headers || {}
             ,   method  = setup.method  || 'GET'
             ,   payload = setup.payload || null
