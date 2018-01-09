@@ -702,7 +702,7 @@ function socket(setup) {
 
             url = [
                 'https://',       origin, 
-                '/subscribe/', subkey,
+                '/v2/subscribe/', subkey,
                 '/',              channel,
                 '/0/',            timetoken
             ].join('');
@@ -782,7 +782,7 @@ function socket(setup) {
 
         // Return Requester Object
         return setup => {
-            let url     = setup.url     || 'https://pubnub.ably.io/time/0'
+            let url     = setup.url     || 'https://ps.pubnub.com/time/0'
             ,   headers = setup.headers || {}
             ,   method  = setup.method  || 'GET'
             ,   payload = setup.payload || null
